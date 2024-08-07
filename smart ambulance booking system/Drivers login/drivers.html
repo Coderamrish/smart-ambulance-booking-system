@@ -24,7 +24,7 @@
 			<input type="email" placeholder="Email" id="email"/>
 			<input type="password" placeholder="Password" id="password"/>
 			<input type="Vehicle number" placeholder="Vehicle number" id="Vehicle number"/>
-			<input type="Licence no." placeholder="Licence no." id="Licence no."/>
+			<input type="Licence no." placeholder="Licence no." id="Licence no"/>
 			<button onclick="SignUp()">Sign Up</button>
 		</form>
 	</div>
@@ -59,23 +59,29 @@
 </div>
       <script src="main.js"></script>
 	  <script>
-		function SignUp(){
-		var name =  document.getElementById("name").value;
-		var email =  document.getElementById("email").value;
-		var password =  document.getElementById("password").value;
-		fetch(`http://127.0.0.1:8000/register/name=${name}&email=${email}&password=${password}`)
-		.then(response=>response.json())
-		.then(data=>window.location.href = '../index.html')
-		
-		}
-		function Login(){
-		var email =  document.getElementById("lname").value;
-		var password =  document.getElementById("lpassword").value;
-		fetch(`http://127.0.0.1:8000/login/email=${email}&password=${password}`)
-		.then(response=>response.json())
-		.then(data=>window.location.href = '../index.html')
-		}
-		
+		function SignUp() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var vehicleNumber = document.getElementById("vehicle_number").value;
+    var licenceNo = document.getElementById("licence_no").value; 
+
+    fetch(`http://127.0.0.1:8000/register?name=${name}&email=${email}&password=${password}&vehicle_number=${vehicleNumber}&licence_no=${licenceNo}`)
+        .then(response => response.json())
+        .then(data => window.location.href = '../index.html')
+        .catch(error => console.error('Error:', error));
+}
+
+function Login() {
+    var email = document.getElementById("lname").value;
+    var password = document.getElementById("lpassword").value;
+
+    fetch(`http://127.0.0.1:8000/login?email=${email}&password=${password}`)
+        .then(response => response.json())
+        .then(data => window.location.href = '../index.html')
+        .catch(error => console.error('Error:', error));
+}
+
 	  </script>
 </body>
 </html>
