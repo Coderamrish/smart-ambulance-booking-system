@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance at your door.</title>
+    <link rel="icon" type="image/png" href="images/logo1.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="aside">
+         <div class="logo">
+             <span><img class="site-logo" src="images\logo1.png" alt="loading..."/></span>
+         </div>
+         <div class="nav-toggler">
+             <span></span>
+         </div>
+         <ul class="nav">
+             <li><a href="#home" class="active"><i class="fa fa-home"></i>Home</a></li>
+             <li><a href="#services"><i class="fa fa-list"></i>Services</a></li>
+             <li><a href="#contact"><i class="fa fa-comments"></i>Contact Us</a></li>
+             <li><a href="login/login.html"><i class="fa fa-sign-in"></i>Login</a></li>
+             <li><a href="Drivers login/drivers.html"><i class="fa fa-sign-in"></i> Drivers Login</a></li>
+            
+         </ul>
+      </div>
+
+      <section class="home active section" id="home">
+
+              <div class="container">
+
+                  <div class="home-info">
+                    <h3 class="intro">GET AMBULANCES AT YOUR DOOR
+                      <span class="name"><br>Serving for nation </span></h3>
+                      <h3 class="my-profession"><span class="typing"></span></h3>
+                               <p>
+                                   <ul class="home-content">
+                                    <li>24/7 emergency & medical transportation support.</li>
+                                    <li>Ensuring professional medical care throughout the medical transport journey.
+                                    </li>
+                                  </ul>
+                              </p>
+                              <br>
+                              <a type="button" class="btn" onclick="genMap(); window.location.href='login/login.html';">BOOK AMBULANCE</a>
+
+                              
+                              
+                  </div>
+              </div>
+              <img class="home-img" src="images\ambulance.jpg" alt="">
+          </section>
+
+          <section class="service section" id="services">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>
+                                Services
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fas fa-ambulance fa-3x"></i>
+                                </div>
+                                <h4>ALS (Advanced Life Support)</h4>
+                                <p>ALS ambulance is staffed by a Paramedic and is used to transport patients who require high level of care, cardiac monitor and/or a ventilator during transport. It is an I.C.U on wheels.
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fas fa-ambulance fa-3x"></i>
+                                </div>
+                                <h4>BLS (Basic Life Support)</h4>
+                                <p>BLS Ambulance provides transport to patients who are non ambulatory, bed confined, do not require cardiac monitoring and are in a non-life threatening condition.
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="service-item padd-15">
+                            <div class="service-item-inner">
+                                <div class="icon">
+                                    <i class="fas fa-ambulance fa-3x"></i>
+                                </div>
+                                <h4>Patient Transport</h4>
+                                <p>Patient Transport ambulance is the most basic type of transport available to patients requiring ambulatory support for their healthcare appoints, or for admission to and discharge from hospital.
+                                </p>
+
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+
+                        
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact section" id="contact">
+                <div class="container">
+
+                    <div class="row">
+                         <div class="section-title padd-15">
+                             <h2>Contact Us</h2>
+                         </div>
+                    </div>
+                    <h3 class="contact-title padd-15">Any Querries ?</h3>
+                    <h4 class="contact-sub-title padd-15">WE ARE HERE TO HELP YOU</h4>
+                    <div class="row">
+                        <div class="contact-info-item padd-15">
+                            <div class="icon"><i class="fa fa-phone"></i></div>
+                            <h4>Call Us</h4>
+                            <p>+91 9908567899</p>
+                        </div>
+                       <div class="contact-info-item padd-15">
+                           <div class="icon"><i class="fa fa-map-marker-alt"></i></div>
+                           <h4>Home</h4>
+                           <p>KOLKATA</p>
+                       </div>
+                       <div class="contact-info-item padd-15">
+                          <div class="icon"><i class="fa fa-envelope"></i></div>
+                          <h4>Email</h4>
+                          <p>ambulance@gmail.com</p>
+                       </div>
+                       <!--<div class="contact-info-item padd-15">
+                          <div class="icon"><i class="fa fa-globe-europe"></i></div>
+                          <h4>Website</h4>
+                          <p>www.domain.com</p>
+                       </div>-->
+                     </div>
+                       <!--<h3 class="contact-title padd-15">SEND ME AN EMAIL</h3>
+                       <h4 class="contact-sub-title padd-15">I'M VERY RESPOSIVE TO MESSAGES</h4>-->
+                       <form id="contact-form" onsubmit="sendEmail(event)">
+                        <div class="input-box">
+                            <div class="input-field">
+                                <input type="text" name="name" placeholder="Full Name" required>
+                                <span class="focus"></span>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" name="email" placeholder="Email" required>
+                                <span class="focus"></span>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <div class="input-field">
+                                <input type="number" name="mobile" placeholder="Mobile Number" required>
+                                <span class="focus"></span>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" name="subject" placeholder="Email Subject" required>
+                                <span class="focus"></span>
+                            </div>
+                        </div>
+                        <div class="textarea-field">
+                            <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                            <span class="focus"></span>
+                        </div>
+                        <div class="btn-box btns">
+                            <button type="submit" class="btn">Submit</button>
+                        </div>
+                    </form>
+                    
+                   
+                    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+                    <script type="text/javascript">
+                        (function(){
+                            emailjs.init("iLW08mW7AF-Y1hWKu"); // Replace with your EmailJS user ID
+                        })();
+                    
+                        function sendEmail(event) {
+                            event.preventDefault(); // Prevent form submission
+                    
+                            emailjs.sendForm('service_d1jbqop', 'template_xscarig', '#contact-form')
+                                .then(function(response) {
+                                    alert('Message sent successfully!');
+                                }, function(error) {
+                                    alert('Failed to send the message. Please try again later.');
+                                });
+                        }
+                    </script>
+                    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>
+    <script src="js/script.js"></script>
+    
+    <script>
+        function genMap()
+        {
+            fetch('http://127.0.0.1:8000/map')
+            .then(()=>window.location.href="info.html")
+        }
+    </script>
+  </body>
+</html> 
