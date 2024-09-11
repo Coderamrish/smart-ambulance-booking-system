@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Booking Form with Razorpay Payment</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e90ff, #ff7f50);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #1e90ff, #ff7f50);
+            }
+            100% {
+                background: linear-gradient(135deg, #ff7f50, #1e90ff);
+            }
+        }
+
+        .booking-form, .confirmation-message {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .booking-form h2, .confirmation-message h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus,
+        .form-group input[type="tel"]:focus {
+            border-color: #1e90ff;
+            box-shadow: 0 0 8px rgba(30, 144, 255, 0.3);
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .form-group button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group button:active {
+            background-color: #1e7e34;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .confirmation-message {
+            display: none; /* Hidden by default */
+            text-align: left;
+        }
+
+        .confirmation-message p {
+            font-size: 16px;
+            color: #333;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-form">
+        <h2>Book an Ambulance</h2>
+        <form id="ambulanceBookingForm">
+            <div class="form-group">
+                <label for="patient-name">Patient Name</label>
+                <input type="text" id="patient-name" name="patient_name" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" min="1" max="120" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile-number">Mobile Number</label>
+                <input type="tel" id="mobile-number" name="mobile_number" pattern="[0-9]{10}" required>
+            </div>
+            <div class="form-group">
+                <label for="pickup-location">Pickup Location</label>
+                <input type="text" id="pickup-location" name="pickup_location" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Book Now</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="confirmation-message">
+        <h2>Booking Confirmed!</h2>
+        <p><strong>Patient Name:</strong> <span id="patient-name-confirm"></span></p>
+        <p><strong>Age:</strong> <span id="age-confirm"></span></p>
+        <p><strong>Ambulance Number:</strong> <span id="ambulance-number"></span></p>
+        <p><strong>Driver's Name:</strong> <span id="driver-name"></span></p>
+        <p><strong>Driver's Contact Number:</strong> <span id="driver-contact"></span></p>
+        <p><strong>Ambulance Model:</strong> <span id="ambulance-model"></span></p>
+        <p><strong>Estimated Arrival Time:</strong> <span id="arrival-time"></span></p>
+    </div>
+
+    <!-- Include Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <script>
+        document.getElementById('ambulanceBookingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting traditionally
+
+            // Get form values
+            const patientName = document.getElementById('patient-name').value.trim();
+            const age = document.getElementById('age').value.trim();
+            const mobileNumber = document.getElementById('mobile-number').value.trim();
+            const pickupLocation = document.getElementById('pickup-location').value.trim();
+            const destination = document.getElementById('destination').value.trim();
+
+            // Basic validation
+            if (patientName === '' || age === '' || mobileNumber === '' || pickupLocation === '' || destination === '') {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            if (!/^\d{10}$/.test(mobileNumber)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
+
+            if (age < 1 || age > 120) {
+                alert('Please enter a valid age between 1 and 120.');
+                return;
+            }
+
+            // Configure Razorpay payment options
+            const options = {
+                "key": "rzp_test_UKYkiYH5tcBIsD", // Replace with your Razorpay key ID
+                "amount": 50000, // Example amount in paise (50000 paise = INR 500)
+                "currency": "INR",
+                "name": "Ambulance Service",
+                "description": "Ambulance Booking Payment",
+                "handler": function (response) {
+                    fetch('/api/getBookingDetails', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            patientName: patientName,
+                            age: age
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        displayConfirmationMessage(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                },
+                "prefill": {
+                    "name": patientName,
+                    "contact": mobileNumber
+                },
+                "theme": {
+                    "color": "#3399cc"
+                }
+            };
+
+            const rzp1 = new Razorpay(options);
+            rzp1.open();
+        });
+
+        function displayConfirmationMessage(data) {
+            // Hide the booking form
+            document.querySelector('.booking-form').style.display = 'none';
+
+            // Update the confirmation message with booking details
+            document.getElementById('patient-name-confirm').textContent = data.patientName;
+            document.getElementById('age-confirm').textContent = data.age;
+            document.getElementById('ambulance-number').textContent = data.ambulanceNumber;
+            document.getElementById('driver-name').textContent = data.driverName;
+            document.getElementById('driver-contact').textContent = data.driverContact;
+            document.getElementById('ambulance-model').textContent = data.ambulanceModel;
+            document.getElementById('arrival-time').textContent = data.arrivalTime;
+
+            // Show the confirmation message
+            document.querySelector('.confirmation-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

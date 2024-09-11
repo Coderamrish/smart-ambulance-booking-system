@@ -96,7 +96,7 @@ const nav = document.querySelector(".nav");
           asideSectionTogglerBtn();
       })
 
-
+      
       function asideSectionTogglerBtn()
       {
           aside.classList.toggle("open");
@@ -106,3 +106,4 @@ const nav = document.querySelector(".nav");
               allSection[i].classList.toggle("open");
           }
       }
+     

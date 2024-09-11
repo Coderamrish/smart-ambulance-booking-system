@@ -425,75 +425,92 @@ h3.my-profession
 
 }
 
+/* General styling for contact section */
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 60px 0;
+    background-color: #f9f9f9; /* Light background color */
+}
 
-.contact-title
-{
+.contact-title {
     color: var(--btn-red);
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
+    font-weight: bold;
     margin-bottom: 20px;
+    position: relative;
+    animation: slide-in 1s ease-out forwards;
 }
-.contact-sub-title
-{
+
+.contact-sub-title {
     color: var(--text-black-900);
     text-align: center;
-    font-size: 15px;
+    font-size: 17px;
     margin-bottom: 60px;
+    position: relative;
+    animation: fade-in 1.5s ease-out forwards;
 }
-.contact .contact-info-item
-{
+
+.contact .contact-info-item {
     flex: 0 0 33%;
-    max-width:33%;
+    max-width: 33%;
     text-align: center;
     margin-bottom: 60px;
+    animation: zoom-in 1s ease-out forwards;
 }
-.contact .contact-info-item .icon
-{
+
+.contact .contact-info-item .icon {
     display: inline-block;
+    animation: rotate-icon 1s infinite linear;
 }
-.contact .contact-info-item .icon .fa
-{
+
+.contact .contact-info-item .icon .fa {
     font-size: 25px;
     color: var(--btn-red);
-
 }
-.contact .contact-info-item h4
-{
+
+.contact .contact-info-item h4 {
     font-size: 18px;
     font-weight: 700;
     color: var(--text-black-900);
     text-transform: capitalize;
     margin: 15px 0 15px;
 }
-.contact .contact-info-item p
-{
+
+.contact .contact-info-item p {
     font-size: 16px;
     line-height: 25px;
     color: var(--text-black-700);
     font-weight: 400;
 }
 
-.contact .contact-form
-{
+.contact .contact-form {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: slide-up 1.5s ease-out forwards;
+}
+
+.contact .contact-form .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.contact .contact-form .col-12 {
     flex: 0 0 100%;
     max-width: 100%;
 }
-.contact .contact-form .col-6
-{
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-.contact .contact-form .col-12
-{
-    flex: 0 0 100%;
-    max-width: 100%;
-}
-.contact .contact-form .form-item
-{
+
+.contact .contact-form .form-item {
     margin-bottom: 30px;
 }
-.contact .contact-form .form-item .form-control
-{
+
+.contact .contact-form .form-item .form-control {
     width: 100%;
     height: 50px;
     border-radius: 25px;
@@ -503,18 +520,81 @@ h3.my-profession
     font-size: 16px;
     color: var(--text-black-700);
     transition: all 0.3s ease;
-}
-.contact .contact-form .form-item .form-control:focus
-{
-    box-shadow:  0 0 20px rgba(48, 46, 77, 0.15);
-}
-.contact .contact-form .form-item textarea.form-control
-{
-    height: 140px;
-}
-.contact .contact-form .btn
-{
-    height: 50px;
-    padding: 0 50px;
+    box-shadow: none;
 }
 
+.contact .contact-form .form-item .form-control:focus {
+    box-shadow: 0 0 20px rgba(48, 46, 77, 0.15);
+    border-color: var(--btn-red);
+}
+
+.contact .contact-form .form-item textarea.form-control {
+    height: 140px;
+}
+
+.contact .contact-form .btn {
+    height: 50px;
+    padding: 0 50px;
+    background-color: var(--btn-red);
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact .contact-form .btn:hover {
+    background-color: darkred;
+}
+
+/* Keyframes for animations */
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate-icon {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
