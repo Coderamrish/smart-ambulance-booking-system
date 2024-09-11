@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e1ea98;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    background: rgb(161, 88, 239);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    animation: slideUp 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: bounceIn 0.6s ease-in-out;
+}
+
+@keyframes bounceIn {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align all items */
+}
+
+label {
+    margin-bottom: 5px;
+    color: #555;
+    align-self: flex-start; /* Align labels to the start */
+    animation: fadeIn 1s ease-in-out;
+}
+
+input, textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%; /* Make inputs full width */
+    transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #aaba00;
+}
+
+button {
+    padding: 10px;
+    background-color: #0fba00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Make the button full width */
+    max-width: 200px; /* Set a max-width for the button */
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: #879900;
+    transform: translateY(-3px);
+}
+
+button:active {
+    background-color: #94e629;
+    transform: translateY(0);
+}

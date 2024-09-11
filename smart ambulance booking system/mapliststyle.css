@@ -1,9 +1,9 @@
 :root {
-    --primary-color: #e50914;
+    --primary-color: #e509de;
     --dark-color: #141414;
-    --light-color: #f4f4f4;
-    --btn-red: #ff1a1a;
-    --section-bg: #FFF0F5;
+    --light-color: #b5dcc6;
+    --btn-red: #d11aff;
+    --section-bg: #d1b9d5;
 }
 
 body {
@@ -142,7 +142,7 @@ tr {
 tr:hover {
     cursor: pointer;
     background-color: white;
-    border-color: gray;
+    border-color: rgb(147, 108, 186);
     transform: scale(1.08);
 }
 
@@ -163,7 +163,7 @@ tr:hover {
 	outline: none;
 	cursor: pointer;
 
-	background-color: #44AAEE;
+	background-color: #9044ee;
 
 	margin: 5px;
 	transition: 0.4s;
@@ -175,10 +175,10 @@ tr:hover {
 }
 
 .pagenumbers button:hover {
-	background-color: #44EEAA;
+	background-color: #c3ee44;
 }
 
 .pagenumbers button.active {
-	background-color: #44EEAA;
+	background-color: #eec944;
 	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
